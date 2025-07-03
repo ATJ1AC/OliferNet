@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Мои любимые сайты</title>
+  <style>
+    /* === Глобальные стили === */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      color: #ecf0f1;
+      background: linear-gradient(-45deg, #6d6875, #343a40, #4a5759);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .content-wrapper {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+      letter-spacing: 3px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #bdc3c7;
+      margin-bottom: 40px;
+      display: block;
+      letter-spacing: 2px;
+    }
+
+    .sites-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .site-card {
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .site-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .site-title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .site-description {
+      font-size: 1rem;
+      color: #dcdcdc;
+      margin-bottom: 15px;
+    }
+
+    .site-link {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #e3f2fd;
+      color: #000;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .site-link:hover {
+      background-color: #c9c9c9;
+    }
+
+    /* === Цвета для карточек === */
+    .card-1 { background-color: #5b8a75; } /* Лесной светло-зелёный */
+    .card-2 { background-color: #bf2525; } /* Красный */
+    .card-3 { background-color: #3155c9; } /* Синий */
+    .card-4 { background-color: #13a429; } /* Зелёный */
+    .card-5 { background-color: #0d8f8f; } /* Тёмно-бирюзовый */
+    .card-6 { background-color: #787c42; } /* Оливковый */
+    .card-7 { background-color: #1ca967; } /* Ярко-зелёный */
+
+    /* === Боковое меню === */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background: linear-gradient(to bottom, #2c3e50, #34495e);
+      color: white;
+      padding: 40px 20px;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+      transition: right 0.4s ease;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar.open {
+      right: 0;
+    }
+
+    .user-info {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .menu-item {
+      display: block;
+      padding: 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu-item:hover {
+      background: #4a6fa7;
+    }
+
+    /* === Стрелочка для открытия меню === */
+    .menu-toggle {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 80px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .menu-toggle:hover {
+      background: #444;
+    }
+
+    /* === Анимации === */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="content-wrapper">
+
+  <!-- Стрелочка для открытия меню -->
+  <button class="menu-toggle" onclick="toggleMenu()">▶</button>
+
+  <!-- Боковое меню -->
+  <div class="sidebar" id="sidebar">
+    <div class="user-info" id="username">Пользователь: JohnDoe</div>
+    <a href="/settings" class="menu-item">⚙️ Настройки</a>
+    <a href="/about" class="menu-item">ℹ️ О нас</a>
+    <a href="/support" class="menu-item">❓ Поддержка</a>
+    <a href="/info" class="menu-item">📄 Информация</a>
+    <a href="/logout" class="menu-item">🚪 Выход</a>
+  </div>
+
+  <!-- Основной контент -->
+  <div class="content-wrapper">
+    <h1>Мои любимые сайты</h1>
+    <p class="subtitle">Выберите сайт, чтобы перейти к нему</p>
+
+    <div class="sites-container">
+
+      <!-- Текстовый квест -->
+      <div class="site-card card-1">
+        <div class="site-title">Текстовый квест</div>
+        <div class="site-description">Погрузитесь в увлекательные истории с выбором действий.</div>
+        <a href="quest_forest.html" class="site-link">Перейти</a>
+      </div>
+
+      <!-- Автомобили -->
+      <div class="site-card card-2">
+        <div class="site-title">Автомобили</div>
+        <div class="site-description">Изучайте технические характеристики машин и сравнивайте модели.</div>
+        <a href="cars.html" class="site-link">Перейти</a>
+      </div>
+
+      <!-- Новости -->
+      <div class="site-card card-3">
+        <div class="site-title">Новости</div>
+        <div class="site-description">Следите за последними событиями в мире и политике.</div>
+        <a href="news.html" class="site-link">Перейти</a>
+      </div>
+
+      <!-- Доставка продуктов -->
+      <div class="site-card card-4">
+        <div class="site-title">Доставка еды</div>
+        <div class="site-description">Заказывайте продукты онлайн и получайте их быстро.</div>
+        <a href="food_delivery.html" class="site-link">Перейти</a>
+      </div>
+
+      <!-- Форум по рыбалке -->
+      <div class="site-card card-5">
+        <div class="site-title">Форум о рыбалке</div>
+        <div class="site-description">Обсуждайте ловлю, снасти и лучшие места для отдыха.</div>
+        <a href="fish_forum.html" class="site-link">Перейти</a>
+      </div>
+
+      <!-- Прогноз погоды -->
+      <div class="site-card card-6">
+        <div class="site-title">Прогноз погоды</div>
+        <div class="site-description">Следите за изменениями погоды в вашем городе.</div>
+        <a href="weather.html" class="site-link">Перейти</a>
+      </div>
+
+      <!-- Рецепты блюд -->
+      <div class="site-card card-7">
+        <div class="site-title">Рецепты блюд</div>
+        <div class="site-description">Находите вкусные и простые рецепты на каждый день.</div>
+        <a href="recipes.html" class="site-link">Перейти</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Скрипт для меню и никнейма -->
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
+    }
+
+    // Получаем токен из localStorage
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      alert("Вы не авторизованы!");
+      window.location.href = "/login";
+    } else {
+      try {
+        // Декодируем JWT (простая версия без проверки подписи)
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const username = payload.sub || "Гость";
+        document.getElementById('username').textContent = "Пользователь: " + username;
+      } catch (e) {
+        console.error("Ошибка декодирования токена", e);
+        alert("Ошибка чтения данных пользователя");
+        window.location.href = "/login";
+      }
+    }
+
+    // Анимация загрузки
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('loaded');
+    });
+  </script>
+
+</body>
+</html>

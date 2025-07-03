@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Вход</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #9D7651, #B8A680, #E8DCC8, #FDF6F0);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: auto;
+      z-index: 10;
+    }
+
+    .home-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .home-button:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .container {
+      background-color: #333;
+      width: 875px;
+      min-height: 500px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      transform: translateX(100%);
+      opacity: 0;
+      transition: all 1s ease;
+      animation: slideIn 1s forwards;
+      position: relative;
+    }
+
+    @keyframes slideIn {
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .container:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .text-section {
+      flex: 1;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .text-section h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .text-section label {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    .text-section input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .center-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .center-button button {
+      background: linear-gradient(to right, #00c9ff, #92fe9d);
+      color: #333;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      width: max-content;
+    }
+
+    .center-button button:hover {
+      transform: scale(1.05);
+    }
+
+    .image-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #444;
+      border-left: 2px solid #555;
+    }
+
+    .image-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0 20px 20px 0;
+    }
+
+    .register-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #0ABAB5;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    /* Подсказки валидации */
+    .validation-rules {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-left: 4px solid #0ABAB5;
+      font-size: 0.9rem;
+    }
+
+    .validation-rules ul {
+      list-style: disc inside;
+      margin: 0;
+      padding-left: 1em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Логотип -->
+<img src="/static/images/OliferNetLogo20.png" alt="Логотип" class="logo">
+
+<!-- Кнопка "Домик" -->
+<a href="/" class="home-button">🏠</a>
+
+<div class="container">
+  <!-- Левая часть: текст и форма -->
+  <div class="text-section">
+    <h1>Вход</h1>
+
+    <form id="loginForm">
+      <label for="loginUsername">Имя пользователя:</label>
+      <input type="text" id="loginUsername" required placeholder="Только латинские буквы и цифры" />
+
+      <label for="loginPassword">Пароль:</label>
+      <input type="password" id="loginPassword" required placeholder="Буква, цифра, спецсимвол" />
+
+      <!-- Правила валидации -->
+      <div class="validation-rules">
+        <p><strong>Правила:</strong></p>
+        <ul>
+          <li>Имя пользователя: только латинские буквы и цифры</li>
+          <li>Пароль: минимум 1 буква, 1 цифра и 1 спецсимвол</li>
+        </ul>
+      </div>
+
+      <div class="center-button">
+        <button type="submit">Войти</button>
+      </div>
+    </form>
+
+    <a href="/register" class="register-link">Нет аккаунта? Зарегистрируйтесь</a>
+  </div>
+
+  <!-- Правая часть: изображение -->
+  <div class="image-section">
+    <img src="/static/images/Key.png" alt="Ключ">
+  </div>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const username = document.getElementById('loginUsername').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  if (!username || !password) {
+    alert("Имя пользователя и пароль обязательны");
+    return;
+  }
+
+  // Валидация на клиенте (опционально)
+  function isValidUsername(username) {
+    return /^[a-zA-Z0-9]+$/.test(username);
+  }
+
+  function isValidPassword(password) {
+    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/.test(password);
+  }
+
+  if (!isValidUsername(username)) {
+    alert("Имя пользователя должно содержать только латинские буквы и цифры");
+    return;
+  }
+
+  if (!isValidPassword(password)) {
+    alert("Пароль должен содержать: 1 букву, 1 цифру и 1 спецсимвол");
+    return;
+  }
+
+  try {
+    const response = await fetch('/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      localStorage.setItem('token', data.access_token);
+      alert('Вы успешно вошли!');
+      window.location.href = '/main';
+    } else {
+      alert('Ошибка: ' + (data.detail || 'Неверные учетные данные'));
+    }
+  } catch (error) {
+    console.error('Ошибка подключения:', error);
+    alert('Ошибка соединения с сервером');
+  }
+});
+</script>
+
+</body>
+</html>
