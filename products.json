@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Смартфон",
+    "price": 30000,
+    "category": "electronics",
+    "subcategory": "smartphones",
+    "img": "images/iphoneX.png"
+  },
+  {
+    "id": 2,
+    "name": "Ноутбук",
+    "price": 55000,
+    "category": "electronics",
+    "subcategory": "notebooks",
+    "img": "images/ноутбук.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Футболка",
+    "price": 1500,
+    "category": "clothing",
+    "subcategory": "tshirts",
+    "img": "images/футболка.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Джинсы",
+    "price": 4500,
+    "category": "clothing",
+    "subcategory": "jeans",
+    "img": "images/джинсы.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Художественная литература",
+    "price": 900,
+    "category": "books",
+    "subcategory": "fiction",
+    "img": "images/книга.jpg"
+  }
+]
